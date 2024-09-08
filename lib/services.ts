@@ -20,10 +20,21 @@ export async function uploadImage(file: File) {
   }
 }
 
-export async function submitMealForm(formData: any) {
+interface FormType {
+  mealType: string;
+  cuisinePreferences: string[];
+  headcount: number;
+  dietaryRestrictionsAndAllergies: string;
+  perPerson: number;
+  total: number;
+  servingStyle: "";
+  additionalInformation: "";
+  carouselOfRecommendedMenus: [];
+}
+
+export async function submitMealForm(formData: FormType) {
   try {
     const { data } = await axios.post(`${API_URL}/menu-request`, formData);
-    console.log(data);
     return data;
   } catch (err) {
     throw new Error("error while submitting menu");
