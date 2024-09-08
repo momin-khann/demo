@@ -85,7 +85,7 @@ const MyForm = () => {
   async function onSubmit(formData: z.infer<typeof formSchema>) {
     const data = {
       customerId: "668703c10f1735f5eb5ad85e",
-      tentativeDateTime: Date.now(),
+      tentativeDateTime: new Date(Date.now()),
       mealType: formData.mealType,
       cuisinePreferences: formData.cuisinePreferences,
       headcount: 50,

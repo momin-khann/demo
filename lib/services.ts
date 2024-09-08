@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_URL } from "@/lib/constants";
+import { ZodString } from "zod";
 
 export async function uploadImage(file: File) {
   try {
@@ -21,15 +22,17 @@ export async function uploadImage(file: File) {
 }
 
 interface FormType {
-  mealType: string;
-  cuisinePreferences: string[];
-  headcount: number;
-  dietaryRestrictionsAndAllergies: string;
-  perPerson: number;
+  additionalInformation: string;
   total: number;
-  servingStyle: "";
-  additionalInformation: "";
-  carouselOfRecommendedMenus: [];
+  headcount: number;
+  tentativeDateTime: Date;
+  cuisinePreferences: ZodString["_output"][];
+  perPerson: number;
+  customerId: string;
+  mealType: string;
+  dietaryRestrictionsAndAllergies: string;
+  carouselOfRecommendedMenus: ZodString["_output"][];
+  servingStyle: string;
 }
 
 export async function submitMealForm(formData: FormType) {
